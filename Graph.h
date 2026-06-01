@@ -28,7 +28,7 @@ class Graph {
 
  private:
   string labels[MAX_VERTICES];
-  int adjMatrix[MAX_VERTICES][MAX_VERTICES];
+  int adjTable[MAX_VERTICES][MAX_VERTICES];
   int numVertices;
   int getIndex(string& label);
 };
