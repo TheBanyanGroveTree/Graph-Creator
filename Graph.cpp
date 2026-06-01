@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <iomanip>
 #include "Graph.h"
 
 
@@ -185,7 +186,32 @@ void Graph::findShortestPath(string& start, string& end) {
 
 // Print adjacency table
 void Graph::printAdjacencyTable() {
+  // Empty graph
+  if (numVertices == 0) {
+    cout << "Graph is empty." << endl;
+    return;
+  }
 
+  const int COL_W = 6; // Formatting
+
+  // Print header row
+  cout << setw(COL_W) << " ";
+  for (int i = 0; i < numVertices; i++) {
+    cout << setw(COL_W) << labels[j];
+  }
+  cout << endl;
+
+  // Print separator line
+  cout << string(COL_W * (numVertices + 1), '-') << endl;
+
+  // Print each row
+  for (int i = 0; i < numVertices; i++) {
+        cout << setw(COL_W) << labels[i];
+        for (int j = 0; j < numVertices; j++)
+            cout << setw(COL_W) << adjTable[i][j];
+        cout << endl;
+    }
+    cout << endl;
 }
 
 
