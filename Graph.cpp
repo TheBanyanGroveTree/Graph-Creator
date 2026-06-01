@@ -3,9 +3,14 @@
 #include "Graph.h"
 
 
-// Constructor
+// Constructor that initializes empty graph
 Graph::Graph() {
-
+  numVertices = 0;
+  for (int i = 0; i < MAX_VERTICES, i++) {
+    for (int j = 0; j < MAX_VERTICES, j++) {
+      adjMatrix[i][j] = NO_EDGE;
+    }
+  }
 }
 
 
@@ -47,11 +52,16 @@ void Graph::printAdjacencyTable() {
 
 // Get number of vertices
 int Graph::getNumVertices() {
-
+  return numVertices;
 }
 
 
 // Get index of vertex by label
 int Graph::getIndex(string& label) {
-
+  for (int i = 0; i < numVertices; i++) {
+    if (labels[i] == label) {
+      return i;
+    }
+  }
+  return -1; // NOT found
 }
