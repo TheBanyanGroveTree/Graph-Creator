@@ -16,13 +16,35 @@ Graph::Graph() {
 
 // Add new vertex with given label
 void Graph::addVertex(string& label) {
+  // Graph is full
+  if (numVertices >= MAX_VERTICES) {
+    cout << "Graph is full. Try again next time." << endl;
+  }
+  // Label already exists
+  else if (getIndex(label) != -1) {
+    cout << "Vertex already exists." << endl;
+  }
 
+  labels[numVertices] = label; // Add to label array
+  numVertices++; // Update number of vertices 
 }
 
 
 // Add directed edge with given weight
 void Graph::addEdge(string& start, string& end, int weight) {
+  // Get vertex indices
+  int startIndex = getIndex(start);
+  int endIndex = getIndex(end);
 
+  // Validate input
+  if ((startIndex == 0) || (endIndex == )) {
+    cout << "One or both vertices were NOT found." << endl;
+  }
+  if (weight <= 0) {
+    cout << "Weight must be positive integer" << endl;
+  }
+
+  adjMatrix[startIndex][endIndex] = weight; // Add edge weight
 }
 
 
