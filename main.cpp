@@ -21,11 +21,12 @@ void stringUpper(string& input);
 int main() {
   Graph* g = new Graph(); // Create graph object
 
-  // Declare str for user input
+  // Declare vars for user input
   string userCommand = "";
   string label = "";
   string start = "";
   string end = "";
+  int weight = 0;
 
   // Continue prompting user for input until QUIT command
   bool newInput = true;

@@ -7,8 +7,8 @@
 // Constructor that initializes empty graph
 Graph::Graph() {
   numVertices = 0;
-  for (int i = 0; i < MAX_VERTICES, i++) {
-    for (int j = 0; j < MAX_VERTICES, j++) {
+  for (int i = 0; i < MAX_VERTICES; i++) {
+    for (int j = 0; j < MAX_VERTICES; j++) {
       adjTable[i][j] = NO_EDGE;
     }
   }
@@ -60,7 +60,7 @@ void Graph::removeVertex(string& label) {
   // Validate input
   int index = getIndex(label);
   if (index == -1) {
-    coutn << "Vertex NOT found." << endl;
+    cout << "Vertex NOT found." << endl;
   }
 
   // Fill gap
@@ -68,13 +68,13 @@ void Graph::removeVertex(string& label) {
     labels[i] = labels[i + 1];
     // Shift adjacency rows up
     for (int j = 0; j < MAX_VERTICES; j++) {
-      adjTable[i][j] = adjMatrix[i + 1][j];
+      adjTable[i][j] = adjTable[i + 1][j];
     }
   }
   // Shift adjacency columns left
   for (int j = index; (j < numVertices - 1); j++) {
     for (int i = 0; i < MAX_VERTICES; i++) {
-      adjTable[i][j] = adjMatrix[i][j + 1];
+      adjTable[i][j] = adjTable[i][j + 1];
     }
   }
 
@@ -128,9 +128,10 @@ void Graph::findShortestPath(string& start, string& end) {
     visited[i] = false;
     prev[i] = -1;
   }
+  dist[startIndex] = 0;
 
   // Dijkstra loop
-  for (n = 0; n < numVertices; n++) {
+  for (int n = 0; n < numVertices; n++) {
     // Pick unvisited vertex with smallest known distance
     int u = -1;
     for (int i = 0; i < numVertices; i++) {
@@ -140,7 +141,7 @@ void Graph::findShortestPath(string& start, string& end) {
     }
 
     // Remaining vertices are unreachable
-    if ((u == -1) || (dist(u) == INF)) {
+    if ((u == -1) || (dist[u] == INF)) {
       break;
     }
 
@@ -159,7 +160,7 @@ void Graph::findShortestPath(string& start, string& end) {
   }
 
   // Check if destination was reached
-  if (dist[endIndex} == INF) {
+  if (dist[endIndex] == INF) {
     cout << "No path exists." << endl;
     return;
   }
@@ -167,8 +168,8 @@ void Graph::findShortestPath(string& start, string& end) {
   // Reconstruct path by following prev back to start
   int path[MAX_VERTICES];
   int pathLen = 0;
-  for (int curr = endIndex; cur != -1; curr = prev[curr]) {
-    path{pathLen++} = curr;
+  for (int curr = endIndex; curr != -1; curr = prev[curr]) {
+    path[pathLen++] = curr;
   }
 
   // Print path
@@ -197,12 +198,12 @@ void Graph::printAdjacencyTable() {
   // Print header row
   cout << setw(COL_W) << " ";
   for (int i = 0; i < numVertices; i++) {
-    cout << setw(COL_W) << labels[j];
+    cout << setw(COL_W) << labels[i];
   }
   cout << endl;
 
   // Print separator line
-  cout << string(COL_W * (numVertices + 1), '-') << endl;
+  // cout << string(COL_W * (numVertices + 1), '-') << endl;
 
   // Print each row
   for (int i = 0; i < numVertices; i++) {
